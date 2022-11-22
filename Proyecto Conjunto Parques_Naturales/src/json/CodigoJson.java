@@ -7,8 +7,27 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class DescargarJson {
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import persistencias.Parque;
+import persistencias.Parques;
+
+public class CodigoJson {
+
+	public Parques fromFileToObject(String pathname) {
+		
+		Parques parques = null;
+		
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			parques = mapper.readValue(new File(pathname), Parques.class);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return parques;
+	}
+	
 	public static String peticionHttpGet(String urlParaVisitar) throws Exception {
 		// Esto es lo que vamos a devolver
 		StringBuilder resultado = new StringBuilder();
@@ -36,6 +55,11 @@ public class DescargarJson {
 		String url = "https://datosabiertos.castillalamancha.es/sites/datosabiertos.castillalamancha.es/files/espacios%20naturales.json";
 		String json = "";
 		
+		CodigoJson helper = new CodigoJson();
+		Parque parque = new Parque();
+		
+		Parques parques = new Parques();
+		
 		FileWriter fw = null;
 		
 		try {
@@ -46,11 +70,13 @@ public class DescargarJson {
 			fw.write(json);
 			fw.flush();
 			
-			
 		} catch (Exception e) {
 			// Manejar excepción
 			e.printStackTrace();
 		}
+		
+		
+		parques = helper.fromFileToObject("parques_naturales.json");
 
 	}
 
