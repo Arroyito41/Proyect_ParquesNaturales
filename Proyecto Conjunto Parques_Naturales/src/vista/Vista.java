@@ -57,8 +57,33 @@ public class Vista extends JFrame {
 		panelPrincipal.add(panelCLM);
 		panelCLM.setLayout(null);
 		
+		JLabel lblParqueAlbacete = new JLabel("");
+		lblParqueAlbacete.setIcon(new ImageIcon("C:\\Users\\jarro\\git\\repositoryProyectoConjunto\\Proyecto Conjunto Parques_Naturales\\img\\chincheta.png"));
+		lblParqueAlbacete.setBounds(253, 183, 77, 45);
+		panelCLM.add(lblParqueAlbacete);
+		
+		JLabel lblParqueCuenca = new JLabel("");
+		lblParqueCuenca.setIcon(new ImageIcon("C:\\Users\\jarro\\git\\repositoryProyectoConjunto\\Proyecto Conjunto Parques_Naturales\\img\\chincheta.png"));
+		lblParqueCuenca.setBounds(234, 106, 77, 45);
+		panelCLM.add(lblParqueCuenca);
+		
+		JLabel lblParqueGuada = new JLabel("");
+		lblParqueGuada.setIcon(new ImageIcon("C:\\Users\\jarro\\git\\repositoryProyectoConjunto\\Proyecto Conjunto Parques_Naturales\\img\\chincheta.png"));
+		lblParqueGuada.setBounds(172, 29, 77, 45);
+		panelCLM.add(lblParqueGuada);
+		
+		JLabel lblParqueCiu = new JLabel("");
+		lblParqueCiu.setIcon(new ImageIcon("C:\\Users\\jarro\\git\\repositoryProyectoConjunto\\Proyecto Conjunto Parques_Naturales\\img\\chincheta.png"));
+		lblParqueCiu.setBounds(118, 183, 77, 45);
+		panelCLM.add(lblParqueCiu);
+		
+		JLabel lblParqueToledo = new JLabel("");
+		lblParqueToledo.setIcon(new ImageIcon("C:\\Users\\jarro\\git\\repositoryProyectoConjunto\\Proyecto Conjunto Parques_Naturales\\img\\chincheta.png"));
+		lblParqueToledo.setBounds(95, 120, 77, 45);
+		panelCLM.add(lblParqueToledo);
+		
 		JLabel lblMapaCLM = new JLabel("");
-		lblMapaCLM.setIcon(new ImageIcon("C:\\Users\\jarro\\Documents\\DAM\\2\\INTERFACES\\eclipse-workspace\\Proyecto Conjunto Parques_Naturales\\img\\mapaclm.jpg"));
+		lblMapaCLM.setIcon(new ImageIcon("C:\\Users\\jarro\\git\\repositoryProyectoConjunto\\Proyecto Conjunto Parques_Naturales\\img\\mapaclm.jpg"));
 		lblMapaCLM.setBounds(10, 11, 384, 260);
 		panelCLM.add(lblMapaCLM);
 		

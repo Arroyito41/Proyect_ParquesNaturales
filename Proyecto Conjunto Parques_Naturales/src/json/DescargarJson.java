@@ -23,7 +23,7 @@ public class DescargarJson {
 		String linea;
 		// Mientras el BufferedReader se pueda leer, agregar contenido a resultado
 		while ((linea = rd.readLine()) != null) {
-			resultado.append(linea);
+			resultado.append("\r\n" + linea);
 		}
 		// Cerrar el BufferedReader
 		rd.close();
@@ -34,16 +34,16 @@ public class DescargarJson {
 	public static void main(String[] args) {
 		
 		String url = "https://datosabiertos.castillalamancha.es/sites/datosabiertos.castillalamancha.es/files/espacios%20naturales.json";
-		String respuesta = "";
+		String json = "";
 		
 		FileWriter fw = null;
 		
 		try {
-			respuesta = peticionHttpGet(url);
+			json = peticionHttpGet(url);
 			
 			File file = new File("parques_naturales.json");
 			fw =  new FileWriter(file);
-			fw.write(respuesta);
+			fw.write(json);
 			fw.flush();
 			
 			
