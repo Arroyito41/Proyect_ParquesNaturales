@@ -137,10 +137,10 @@ public class Vista extends JFrame {
 		panelPrincipal.add(comboBoxFiltro);
 		
 		btnFiltrar = new JButton("FILTRAR");
-		btnFiltrar.setBackground(new Color(224, 255, 255));
 		btnFiltrar.setForeground(new Color(0, 128, 0));
 		btnFiltrar.setFont(new Font("Tahoma", Font.BOLD, 10));
-		btnFiltrar.setBounds(263, 329, 86, 21);
+		btnFiltrar.setBackground(new Color(224, 255, 255));
+		btnFiltrar.setBounds(263, 328, 86, 21);
 		panelPrincipal.add(btnFiltrar);
 	}
 }
