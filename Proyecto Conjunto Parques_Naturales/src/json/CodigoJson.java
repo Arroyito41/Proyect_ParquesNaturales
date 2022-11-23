@@ -2,25 +2,27 @@ package json;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.SQLException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import persistencias.Parque;
 import persistencias.Parques;
 
 public class CodigoJson {
 
-	public Parques fromFileToObject(String pathname) {
+	public Parques fromStringToObject(String fichero) {
 		
 		Parques parques = null;
 		
 		try {
 			ObjectMapper mapper = new ObjectMapper();
-			parques = mapper.readValue(new File(pathname), Parques.class);
+			parques = mapper.readValue(new File(leerFichero(fichero)), Parques.class);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -28,24 +30,47 @@ public class CodigoJson {
 		return parques;
 	}
 	
+	public String leerFichero (String pathname) throws SQLException, IOException{
+		
+		String fichero = "";
+		
+		BufferedReader br = null;
+		FileReader fr = null;
+		
+		try {
+			fr = new FileReader(pathname);
+			br = new BufferedReader(fr);
+			
+			String linea = "";
+			
+			while((linea=br.readLine())!=null)
+	            fichero = linea;
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return fichero;
+	}
+	
+	
+	
 	public static String peticionHttpGet(String urlParaVisitar) throws Exception {
-		// Esto es lo que vamos a devolver
+		
 		StringBuilder resultado = new StringBuilder();
-		// Crear un objeto de tipo URL
+		
 		URL url = new URL(urlParaVisitar);
 
 		// Abrir la conexión e indicar que será de tipo GET
 		HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
 		conexion.setRequestMethod("GET");
-		// Búferes para leer
-		BufferedReader rd = new BufferedReader(new InputStreamReader(conexion.getInputStream()));
+		BufferedReader br = new BufferedReader(new InputStreamReader(conexion.getInputStream()));
 		String linea;
 		// Mientras el BufferedReader se pueda leer, agregar contenido a resultado
-		while ((linea = rd.readLine()) != null) {
+		while ((linea = br.readLine()) != null) {
 			resultado.append("\r\n" + linea);
 		}
-		// Cerrar el BufferedReader
-		rd.close();
+		br.close();
 		// Regresar resultado, pero como cadena, no como StringBuilder
 		return resultado.toString();
 	}
@@ -56,7 +81,6 @@ public class CodigoJson {
 		String json = "";
 		
 		CodigoJson helper = new CodigoJson();
-		Parque parque = new Parque();
 		
 		Parques parques = new Parques();
 		
@@ -75,8 +99,7 @@ public class CodigoJson {
 			e.printStackTrace();
 		}
 		
-		
-		parques = helper.fromFileToObject("parques_naturales.json");
+		parques = helper.fromStringToObject("parques_naturales.json");
 
 	}
 

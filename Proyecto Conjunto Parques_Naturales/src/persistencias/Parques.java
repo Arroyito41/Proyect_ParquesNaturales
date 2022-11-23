@@ -3,18 +3,17 @@ package persistencias;
 import java.util.ArrayList;
 
 public class Parques {
-	ArrayList <Parque> listaParques;
-
-	public Parques(ArrayList<Parque> listaParques) {
-		super();
-		this.listaParques = listaParques;
-	}
+	
+	private ArrayList <Parque> listaParques = null;
 
 	public Parques() {
-		super();
+		
 	}
 
 	public ArrayList<Parque> getListaParques() {
+		if(null == listaParques) {
+			listaParques = new ArrayList<Parque>();
+		}
 		return listaParques;
 	}
 

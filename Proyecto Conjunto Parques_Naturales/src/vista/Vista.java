@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controlador.Controlador;
+
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JList;
@@ -13,14 +16,18 @@ import javax.swing.JTextPane;
 import java.awt.Font;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Color;
+import javax.swing.JRadioButton;
+import javax.swing.JButton;
 
 public class Vista extends JFrame {
 
 	public JPanel contentPane, panelPrincipal,  panelCLM, panelInfo;
 	public JLabel lblLogo, lblParqueAlbacete, lblParqueCuenca, lblParqueGuada, lblParqueCiu, lblParqueToledo, lblMapaCLM, lblFiltro; 
 	public JTextPane txtpnInformacion; 
-	public JComboBox comboBoxFiltro;
+	public JComboBox comboBoxSeleccionFiltro, comboBoxFiltro;
 	public JList list;
+	public JButton btnFiltrar;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -28,8 +35,9 @@ public class Vista extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Vista frame = new Vista();
-					frame.setVisible(true);
+					Vista vista = new Vista();
+					Controlador controlador = new Controlador(vista);
+					vista.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -108,19 +116,31 @@ public class Vista extends JFrame {
 		txtpnInformacion.setBounds(0, 0, 225, 197);
 		panelInfo.add(txtpnInformacion);
 		
-		lblFiltro = new JLabel("FILTRO:");
+		lblFiltro = new JLabel("FILTROS:");
 		lblFiltro.setForeground(new Color(0, 0, 139));
 		lblFiltro.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblFiltro.setBounds(20, 331, 54, 14);
+		lblFiltro.setBounds(20, 331, 69, 14);
 		panelPrincipal.add(lblFiltro);
 		
-		comboBoxFiltro = new JComboBox();
-		comboBoxFiltro.setModel(new DefaultComboBoxModel(new String[] {"...", "CATEGOR\u00CDA", "PROVINCIA"}));
-		comboBoxFiltro.setBounds(96, 327, 168, 22);
-		panelPrincipal.add(comboBoxFiltro);
+		comboBoxSeleccionFiltro = new JComboBox();
+		comboBoxSeleccionFiltro.setModel(new DefaultComboBoxModel(new String[] {"..."}));
+		comboBoxSeleccionFiltro.setBounds(428, 328, 239, 22);
+		panelPrincipal.add(comboBoxSeleccionFiltro);
 		
 		list = new JList();
 		list.setBounds(10, 370, 657, 179);
 		panelPrincipal.add(list);
+		
+		comboBoxFiltro = new JComboBox();
+		comboBoxFiltro.setModel(new DefaultComboBoxModel(new String[] {"...", "SIN FILTRO", "PROVINCIA", "CATEGORIA"}));
+		comboBoxFiltro.setBounds(106, 328, 139, 22);
+		panelPrincipal.add(comboBoxFiltro);
+		
+		btnFiltrar = new JButton("FILTRAR");
+		btnFiltrar.setBackground(new Color(224, 255, 255));
+		btnFiltrar.setForeground(new Color(0, 128, 0));
+		btnFiltrar.setFont(new Font("Tahoma", Font.BOLD, 10));
+		btnFiltrar.setBounds(263, 329, 86, 21);
+		panelPrincipal.add(btnFiltrar);
 	}
 }
