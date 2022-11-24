@@ -32,6 +32,7 @@ public class CodigoJson {
 		return parques;
 	}*/
 	
+	//Este es el metodo bueno
 	public String leerFichero (String pathname) throws SQLException, IOException{
 		
 		String fichero = "";
