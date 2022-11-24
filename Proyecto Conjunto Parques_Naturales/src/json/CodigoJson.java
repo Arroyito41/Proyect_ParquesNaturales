@@ -9,30 +9,18 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import persistencias.Parque;
 import persistencias.Parques;
 
 public class CodigoJson {
-
-	/*public Parques fromStringToObject(String fichero) throws SQLException, IOException {
-		
-		Parques parques = null;
-		
-		fichero = leerFichero("parques_naturales.json");
-		
-		try {
-			ObjectMapper mapper = new ObjectMapper();
-			parques = mapper.readValue(fichero, Parques.class);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return parques;
-	}*/
-	
-	//Este es el metodo bueno
 	
 	public String leerFichero (String pathname) throws SQLException, IOException{
 		
@@ -58,6 +46,22 @@ public class CodigoJson {
 		return fichero;
 	}
 	
+	public void convertirStringToArrayJson (String fichero) throws Exception{
+		
+		Parques parques = new Parques();
+		JSONArray jsonArray = new JSONArray(fichero);
+		
+		for (int i = 0; i < jsonArray.length(); i++) {
+		    JSONObject explrObject = jsonArray.getJSONObject(i);
+		    
+		    String categoria = (String) ((JSONObject)jsonArray.get(i)).get("ESPACIOS NATURALES PROTEGIDOS EN CASTILLA-LA MANCHA (2018)");
+		    String provincia = (String) ((JSONObject)jsonArray.get(i)).get("");
+		    
+		    Parque parque = new Parque(categoria, provincia);
+		    parques.getListaParques().add(parque);
+		}
+	}
+	
 	public static String peticionHttpGet(String urlParaVisitar) throws Exception {
 		
 		StringBuilder resultado = new StringBuilder();
@@ -78,7 +82,7 @@ public class CodigoJson {
 		return resultado.toString();
 	}
 	
-	public static void main(String[] args) throws SQLException, IOException {
+	public static void main(String[] args) throws Exception {
 		
 		String url = "https://datosabiertos.castillalamancha.es/sites/datosabiertos.castillalamancha.es/files/espacios%20naturales.json";
 		String json = "";
@@ -101,8 +105,8 @@ public class CodigoJson {
 			// Manejar excepción
 			e.printStackTrace();
 		}
-		
-		System.out.println(helper.leerFichero("parques_naturales.json"));
+		String contenido = helper.leerFichero("parques_naturales.json");
+		helper.convertirStringToArrayJson(contenido);
 		
 	}
 
