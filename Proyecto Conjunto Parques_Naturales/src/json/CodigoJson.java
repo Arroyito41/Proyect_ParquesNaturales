@@ -16,19 +16,21 @@ import persistencias.Parques;
 
 public class CodigoJson {
 
-	public Parques fromStringToObject(String fichero) {
+	/*public Parques fromStringToObject(String fichero) throws SQLException, IOException {
 		
 		Parques parques = null;
 		
+		fichero = leerFichero("parques_naturales.json");
+		
 		try {
 			ObjectMapper mapper = new ObjectMapper();
-			parques = mapper.readValue(new File(leerFichero(fichero)), Parques.class);
+			parques = mapper.readValue(fichero, Parques.class);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return parques;
-	}
+	}*/
 	
 	public String leerFichero (String pathname) throws SQLException, IOException{
 		
@@ -43,8 +45,9 @@ public class CodigoJson {
 			
 			String linea = "";
 			
-			while((linea=br.readLine())!=null)
-	            fichero = linea;
+			while((linea = br.readLine()) != null) {
+				fichero = fichero + linea;
+			}
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -52,8 +55,6 @@ public class CodigoJson {
 		
 		return fichero;
 	}
-	
-	
 	
 	public static String peticionHttpGet(String urlParaVisitar) throws Exception {
 		
@@ -75,7 +76,7 @@ public class CodigoJson {
 		return resultado.toString();
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException, IOException {
 		
 		String url = "https://datosabiertos.castillalamancha.es/sites/datosabiertos.castillalamancha.es/files/espacios%20naturales.json";
 		String json = "";
@@ -99,8 +100,8 @@ public class CodigoJson {
 			e.printStackTrace();
 		}
 		
-		parques = helper.fromStringToObject("parques_naturales.json");
-
+		System.out.println(helper.leerFichero("parques_naturales.json"));
+		
 	}
 
 }
