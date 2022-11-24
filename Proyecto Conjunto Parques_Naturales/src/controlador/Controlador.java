@@ -30,8 +30,6 @@ public class Controlador implements ActionListener {
 			} else if (vista.comboBoxFiltro.getModel().getSelectedItem().equals("CATEGORIA")) {
 				vista.comboBoxSeleccionFiltro.setModel(new DefaultComboBoxModel(new String[] {"...", "PAISAJE PROTEGIDO", "MONUMENTO NATURAL", "RESERVA FLUVIAL", "MICRORESERVA", "RESERVA NATURAL", "PARQUE NATURAL", "PARQUE NACIONAL"}));
 			}
-			
-			
 		}
 		
 			
