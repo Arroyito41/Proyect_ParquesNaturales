@@ -29,6 +29,7 @@ public class CodigoJson {
 		BufferedReader br = null;
 		FileReader fr = null;
 		
+		
 		try {
 			fr = new FileReader(pathname);
 			br = new BufferedReader(fr);
@@ -68,7 +69,7 @@ public class CodigoJson {
 		
 		URL url = new URL(urlParaVisitar);
 
-		// Abrir la conexión e indicar que será de tipo GET
+		// Abrir la conexiï¿½n e indicar que serï¿½ de tipo GET
 		HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
 		conexion.setRequestMethod("GET");
 		BufferedReader br = new BufferedReader(new InputStreamReader(conexion.getInputStream()));
@@ -100,7 +101,7 @@ public class CodigoJson {
 			fw.flush();
 			
 		} catch (Exception e) {
-			// Manejar excepción
+			// Manejar excepciï¿½n
 			e.printStackTrace();
 		}
 		String contenido = helper.leerFichero("parques_naturales.json");
