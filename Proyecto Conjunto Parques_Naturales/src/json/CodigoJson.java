@@ -89,8 +89,6 @@ public class CodigoJson {
 		
 		CodigoJson helper = new CodigoJson();
 		
-		Parques parques = new Parques();
-		
 		FileWriter fw = null;
 		
 		try {
