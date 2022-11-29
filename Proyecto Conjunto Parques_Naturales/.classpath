@@ -15,5 +15,9 @@
 	<classpathentry kind="lib" path="lib/jackson-databind-2.9.9.jar"/>
 	<classpathentry kind="lib" path="lib/jackson-databind-2.9.9-javadoc.jar"/>
 	<classpathentry kind="lib" path="lib/jackson-databind-2.9.9-sources.jar"/>
+<<<<<<< HEAD
+=======
+	<classpathentry kind="lib" path="lib/org.eclipse.scout.json-22.0.37.jar"/>
+>>>>>>> branch 'master' of https://github.com/Arroyito41/Proyect_ParquesNaturales.git
 	<classpathentry kind="output" path="bin"/>
 </classpath>
