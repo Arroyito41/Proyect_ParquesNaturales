@@ -29,7 +29,6 @@ public class CodigoJson {
 		BufferedReader br = null;
 		FileReader fr = null;
 		
-		
 		try {
 			fr = new FileReader(pathname);
 			br = new BufferedReader(fr);

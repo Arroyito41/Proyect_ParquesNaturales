@@ -18,15 +18,16 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.Color;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
 
 public class Vista extends JFrame {
 
-	public JPanel contentPane, panelPrincipal,  panelCLM, panelInfo;
-	public JLabel lblLogo, lblParqueAlbacete, lblParqueCuenca, lblParqueGuada, lblParqueCiu, lblParqueToledo, lblMapaCLM, lblFiltro; 
+	public JPanel contentPane, panelPrincipal,  panelCLM, panelInfo, panelInicio;
+	public JLabel lblLogo, lblParqueAlbacete, lblParqueCuenca, lblParqueGuada, lblParqueCiu, lblParqueToledo, lblMapaCLM, lblFiltro, lblPortada, lblLogoPortada; 
 	public JTextPane txtpnInformacion; 
 	public JComboBox comboBoxSeleccionFiltro, comboBoxFiltro;
 	public JList list;
-	public JButton btnFiltrar;
+	public JButton btnFiltrar, btnIniciarApp;
 	
 	/**
 	 * Launch the application.
@@ -63,6 +64,7 @@ public class Vista extends JFrame {
 		panelPrincipal.setBounds(0, 0, 677, 560);
 		contentPane.add(panelPrincipal);
 		panelPrincipal.setLayout(null);
+		panelPrincipal.setVisible(false);
 		
 		lblLogo = new JLabel("");
 		lblLogo.setIcon(new ImageIcon("img/logoClm.PNG"));
@@ -142,5 +144,29 @@ public class Vista extends JFrame {
 		btnFiltrar.setBackground(new Color(224, 255, 255));
 		btnFiltrar.setBounds(263, 328, 86, 21);
 		panelPrincipal.add(btnFiltrar);
+		
+		panelInicio = new JPanel();
+		panelInicio.setBounds(0, 0, 677, 560);
+		contentPane.add(panelInicio);
+		panelInicio.setLayout(null);
+		
+		btnIniciarApp = new JButton("INICIAR PROGRAMA");
+		btnIniciarApp.setForeground(new Color(255, 255, 255));
+		btnIniciarApp.setBackground(new Color(0, 128, 0));
+		btnIniciarApp.setFont(new Font("Lucida Sans Typewriter", Font.BOLD | Font.ITALIC, 22));
+		btnIniciarApp.setBounds(195, 210, 278, 45);
+		panelInicio.add(btnIniciarApp);
+		
+		lblLogoPortada = new JLabel("");
+		lblLogoPortada.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLogoPortada.setIcon(new ImageIcon("img/logoCLMPortada.png"));
+		lblLogoPortada.setBounds(482, 0, 195, 143);
+		panelInicio.add(lblLogoPortada);
+		
+		lblPortada = new JLabel("");
+		lblPortada.setIcon(new ImageIcon("img/portadaParque.jpg"));
+		lblPortada.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPortada.setBounds(0, 0, 677, 560);
+		panelInicio.add(lblPortada);
 	}
 }
