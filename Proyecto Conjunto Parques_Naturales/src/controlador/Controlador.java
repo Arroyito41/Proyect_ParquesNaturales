@@ -4,13 +4,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -27,6 +31,29 @@ public class Controlador implements ActionListener {
 	Vista vista = new Vista();
 	int provincia=1;
 	String contenido;
+	
+	public Connection createConnection() throws SQLException, FileNotFoundException, IOException, ClassNotFoundException {
+		
+		Connection connection = null;
+		
+		try {
+			Properties config = new Properties();
+			config.load(new FileReader("src/resources/database.properties"));
+			String driver = config.getProperty("database.driver");
+			String url = config.getProperty("database.url");
+			String user = config.getProperty("database.user");
+			String password = config.getProperty("database.password");
+			
+			Class.forName(driver);
+			connection = DriverManager.getConnection(url, user, password);
+			connection.setAutoCommit(false);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw e;
+		}
+		return connection;
+	}
 	
 	public String peticionHttpGet(String urlParaVisitar) throws Exception {
 		
@@ -138,9 +165,13 @@ public class Controlador implements ActionListener {
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
+			try {
+				createConnection();
+			} catch (ClassNotFoundException | SQLException | IOException e2) {
+				e2.printStackTrace();
+			}
 			
 		}
-			
 		
 		if(e.getSource()== vista.btnFiltrar) {
 	

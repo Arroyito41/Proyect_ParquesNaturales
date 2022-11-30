@@ -16,5 +16,6 @@
 	<classpathentry kind="lib" path="lib/jackson-databind-2.9.9-javadoc.jar"/>
 	<classpathentry kind="lib" path="lib/jackson-databind-2.9.9-sources.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.scout.json-22.0.37.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-8.0.18.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
